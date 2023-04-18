@@ -1,0 +1,6 @@
+[submodule "cJSON"]
+	path = cJSON
+	url = https://github.com/DaveGamble/cJSON.git
+[submodule "debug-logger"]
+	path = debug-logger
+	url = git@github.com:jambamamba/debug-logger.git
