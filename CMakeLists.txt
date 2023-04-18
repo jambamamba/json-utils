@@ -10,6 +10,9 @@ include(CMakePackageConfigHelpers)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(debug_logger_DIR "${CMAKE_PREFIX_PATH}")
+find_package(debug_logger REQUIRED CONFIG)
+
 add_subdirectory(cJSON)
 
 set(SOURCES
@@ -38,7 +41,8 @@ else()
 endif()
 
 set(LIBS
-    cjson 
+    cjson
+    debug_logger::debug_logger
 )
 add_library (${project} SHARED ${SOURCES})
 target_include_directories(${project} PUBLIC ${INC_DIRS})
