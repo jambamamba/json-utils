@@ -81,7 +81,8 @@ function build(){
             -DCMAKE_PREFIX_PATH="${cmake_modules_path}" \
             -G "Ninja" ..
     elif [ "$target" == "arm" ]; then
-        source "${SDK_DIR}/environment-setup-aarch64-fslc-linux"
+        # source "${SDK_DIR}/environment-setup-aarch64-fslc-linux"
+        source "${SDK_DIR}/environment-setup-cortexa72-oe-linux"
         cmake \
             -DBUILD_SHARED_LIBS=ON \
             -DCMAKE_MODULE_PATH="${cmake_modules_path}" \
@@ -115,12 +116,13 @@ function installDependencies() {
 }
 
 function main(){
-    local library="json-utils"
+    local library="json_utils"
     local target="x86"
     parseArgs $@
 
     skip $@ library="${library}"
     installDependencies $@ 
+    local library="json_utils"
     build $@
     package $@ library="${library}"
 }

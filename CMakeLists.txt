@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required (VERSION 3.8)
-set (project "json-utils")
+set (project "json_utils")
 project(${project} CXX C)
 
 # make cache variables for install destinations
