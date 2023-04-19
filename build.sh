@@ -124,7 +124,13 @@ function main(){
     installDependencies $@ 
     local library="json_utils"
     build $@
-    package $@ library="${library}"
+
+
+    local builddir="/tmp/${library}/${target}-build" # $(mktemp -d)/installs
+    copyBuildFilesToInstalls $@ builddir="${builddir}"
+    cp -f cJSON/*.h ${builddir}/installs/include/
+    compressInstalls $@ builddir="${builddir}" library="${library}"
+
 }
 
 time main $@

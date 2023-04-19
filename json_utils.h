@@ -3,7 +3,7 @@
 extern "C" {
 #endif
 
-#include <cJSON.h>
+#include <cJSON/cJSON.h>
 
 typedef struct JsonNameValuePairT {
     const char* _name;
