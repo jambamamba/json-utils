@@ -128,6 +128,18 @@ void storeJsonToFile(char* json, const char* file)
     free(json);
 }
 
+const char *stringFromJsonValue(const cJSON *json_value, const char* default_str)
+{
+    if(json_value) {
+        if(cJSON_IsString(json_value)){
+            return json_value->valuestring;
+        }
+    }
+    LOG(WARNING, JSON, "failed to parse json value\n");
+    return default_str;
+}
+
+
 int intFromJsonValue(const cJSON *json_value, unsigned int max_range)
 {
     if(json_value) {

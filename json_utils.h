@@ -16,6 +16,7 @@ int intFromJsonValue(const cJSON *json_value, unsigned int max_range);
 int intFromJsonArray(const char *json_array, const char *token_name, int default_value, unsigned int max_range);
 double doubleFromJsonValue(const cJSON *json_value, double max_range);
 int colorFromJsonValue(const cJSON *json_value, int default_value);
+const char *stringFromJsonValue(const cJSON *json_value, const char* default_str);
 const char *stringFromJsonArray(const char *json_array, const char *token_name);
 JsonNameValuePair *nameValuePairsFromJsonArray(const char *json_array);
 void freeNameValuePairs(JsonNameValuePair *pairs);
