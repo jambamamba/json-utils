@@ -219,3 +219,7 @@ cJSON* readJson(const char* data_json_file)
 
     return data_json;
 }
+
+const cJSON *objFromJson(const cJSON *json_token, const char *token_name){
+    return cJSON_GetObjectItemCaseSensitive(json_token, token_name);
+}
