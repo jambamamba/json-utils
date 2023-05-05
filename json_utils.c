@@ -139,6 +139,17 @@ const char *stringFromJsonValue(const cJSON *json_value, const char* default_str
     return default_str;
 }
 
+const char *stringFromJsonObject(const cJSON *json_obj, const char *token_name, const char* default_str)
+{
+    if(json_obj) {
+        cJSON * child_obj = cJSON_GetObjectItemCaseSensitive(json_obj, token_name);
+        if(cJSON_IsString(child_obj)){
+            return child_obj->valuestring;
+        }
+    }
+    LOG(WARNING, JSON, "failed to parse json object\n");
+    return default_str;
+}
 
 int intFromJsonValue(const cJSON *json_value, unsigned int max_range)
 {
