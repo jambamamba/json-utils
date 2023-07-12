@@ -79,6 +79,7 @@ function build(){
             -DCMAKE_INSTALL_PREFIX=../install-win \
             -DCMAKE_MODULE_PATH="${cmake_modules_path}" \
             -DCMAKE_PREFIX_PATH="${cmake_modules_path}" \
+            -DINSTALL_DEPS="${installdeps}" \
             -G "Ninja" ..
     elif [ "$target" == "arm" ]; then
         # source "${SDK_DIR}/environment-setup-aarch64-fslc-linux"
@@ -87,6 +88,7 @@ function build(){
             -DBUILD_SHARED_LIBS=ON \
             -DCMAKE_MODULE_PATH="${cmake_modules_path}" \
             -DCMAKE_PREFIX_PATH="${cmake_modules_path}" \
+            -DINSTALL_DEPS="${installdeps}" \
             -G "Ninja" ..
     elif [ "$target" == "x86" ]; then
 		export STRIP="$(which strip)"
@@ -94,6 +96,7 @@ function build(){
             -DBUILD_SHARED_LIBS=ON \
             -DCMAKE_MODULE_PATH="${cmake_modules_path}" \
             -DCMAKE_PREFIX_PATH="${cmake_modules_path}" \
+            -DINSTALL_DEPS="${installdeps}" \
             -G "Ninja" ..
     fi
     ninja
@@ -105,6 +108,10 @@ function installDependencies() {
     parseArgs $@
     local builddir="$(pwd)/${target}-build"
     local artifacts_url="/home/$USER/downloads"
+
+    if [ "${installdeps}" == "false" ]; then
+        return
+    fi
 
     local libs=(debug_logger)
     for library in "${libs[@]}"; do
@@ -118,6 +125,7 @@ function installDependencies() {
 function main(){
     local library="json_utils"
     local target="x86"
+    local installdeps="true"
     parseArgs $@
 
     skip $@ library="${library}"

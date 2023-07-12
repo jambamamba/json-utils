@@ -4,3 +4,6 @@
 [submodule "share"]
 	path = share
 	url = git@github.com:jambamamba/share.git
+[submodule "debug-logger"]
+	path = debug-logger
+	url = https://github.com/jambamamba/debug-logger.git
